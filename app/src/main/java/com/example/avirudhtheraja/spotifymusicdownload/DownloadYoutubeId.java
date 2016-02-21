@@ -17,7 +17,7 @@ import java.net.URL;
 public class DownloadYoutubeId {
     private static String song = null;
     private static String youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=";
-    private final static String YOUTUBE_KEY="AIzaSyAjIBnQ7AcXdNpyF-PNtPYokNBu8-5WtSc";
+    private final static String YOUTUBE_KEY="YOUTUBE_KEY";
     private static StringBuilder sb = new StringBuilder();
 
     public static void downloadSong(String songName, String artistName){
