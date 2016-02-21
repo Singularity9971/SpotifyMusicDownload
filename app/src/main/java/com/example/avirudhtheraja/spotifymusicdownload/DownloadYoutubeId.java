@@ -3,6 +3,9 @@ package com.example.avirudhtheraja.spotifymusicdownload;
 import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -13,14 +16,15 @@ import java.net.URL;
 
 public class DownloadYoutubeId {
     private static String song = null;
-    private static String youtubeURL = "http://rhythmsa.ga/api.php?api=youtube_id&q=";
+    private static String youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=";
+    private final static String YOUTUBE_KEY="AIzaSyAjIBnQ7AcXdNpyF-PNtPYokNBu8-5WtSc";
     private static StringBuilder sb = new StringBuilder();
 
     public static void downloadSong(String songName, String artistName){
         String append = artistName+" "+songName;
         song = replaceSpaces(append);
         Log.d("Avi","Song is "+song);
-        String url = youtubeURL+song;
+        String url = youtubeURL+song+"&key="+YOUTUBE_KEY;
         Log.d("Avi",url);
         new AsyncTask().execute(url);
     }
@@ -53,6 +57,18 @@ public class DownloadYoutubeId {
                 reader.close();
                 con.disconnect();
                 in.close();
+                JSONObject object = new JSONObject(result);
+                result = null;
+                int num = object.getJSONObject("pageInfo").getInt("resultsPerPage");
+                for(int i = 0; i < num; i++) {
+                    JSONObject item = object.getJSONArray("items").getJSONObject(i);
+                    if(item.getJSONObject("id").getString("kind").equals("youtube#video")) {
+                        result = item.getJSONObject("id").getString("videoId");
+                        break;
+                    }
+
+                }
+
             }
             catch (Exception e){e.printStackTrace();}
             if(result != null)
@@ -65,6 +81,10 @@ public class DownloadYoutubeId {
         @Override
         protected void onPostExecute(String s) {
             sb.setLength(0);
+            if(s==null) {
+                Log.d("Avi","No video");
+                return;
+            }
             Log.d("Avi","Final result is "+s);
             DownloadManager dm = TrackFragment.getManager();
             DownloadSong.downloadSong(s,dm);

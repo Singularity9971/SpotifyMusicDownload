@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -186,6 +187,13 @@ public class MainActivity extends AppCompatActivity implements ConnectionStateCa
             i++;
         }
         edit.apply();
+    }
+
+    public static void startActivity(String s){
+        Intent i = new Intent(ApplicationController.getTheApplicationContext(),DownloaderActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("url",s);
+        ApplicationController.getTheApplicationContext().startActivity(i);
     }
 
     private boolean checkForStoredData(){

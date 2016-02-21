@@ -39,6 +39,10 @@ public class ApplicationController extends Application {
         sInstance = this;
     }
 
+    public static Context getTheApplicationContext(){
+        return getInstance().getApplicationContext();
+    }
+
     /**
      * @return ApplicationController singleton instance
      */
