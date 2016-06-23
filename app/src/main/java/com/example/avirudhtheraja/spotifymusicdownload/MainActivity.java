@@ -39,7 +39,7 @@ import retrofit.RetrofitError;
 public class MainActivity extends AppCompatActivity implements ConnectionStateCallback, TrackFragment.OnListFragmentInteractionListener {
 
     // TODO: Replace with your client ID
-    private static final String CLIENT_ID = "c8d0bab7f21e46429c8cb40a77afbc9e";
+    private static final String CLIENT_ID = "id";
     // TODO: Replace with your redirect URI
     private static final String REDIRECT_URI = "spotify-music-download-app-login://calback";
     private static final int REQUEST_CODE = 1337;
