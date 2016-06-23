@@ -41,9 +41,6 @@ public class DownloaderActivity extends AppCompatActivity {
         pd.setMessage("Please wait, fetching your file");
         pd.show();
         String url = getIntent().getExtras().get("url").toString();
-        /*Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);*/
 
         Log.d("Avi","Webview url is "+url);
         wv = (WebView)findViewById(R.id.webView);

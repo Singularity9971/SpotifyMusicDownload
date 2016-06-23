@@ -11,24 +11,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.google.gson.Gson;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
 import com.spotify.sdk.android.player.ConnectionStateCallback;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -40,7 +33,6 @@ import kaaes.spotify.webapi.android.models.PlaylistSimple;
 import kaaes.spotify.webapi.android.models.PlaylistTrack;
 import kaaes.spotify.webapi.android.models.SavedTrack;
 import kaaes.spotify.webapi.android.models.UserPrivate;
-import kaaes.spotify.webapi.android.models.UserPublic;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 
@@ -57,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionStateCa
     private static final String savedSongsPlaylistId = "///////"; //so that it comes up as first element in the set based on ascii value comparison
     private ListView playlistListView;
 
-    //Fix how to show the track fragment, current implementation sucks. Get more tracks from each playlist. Add item click listener to recycler view.
+    //Fix how to show the track fragment, current implementation sucks. Get more tracks from each playlist. Lots of clean up and restructuring required.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
